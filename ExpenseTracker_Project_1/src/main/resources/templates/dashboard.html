@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style4.css}">
+
+    <script>
+        // Function to toggle expense visibility for a category
+        function toggleExpenses(category) {
+            const container = document.getElementById(category + '-expenses');
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, <span th:text="${user.username}">User</span>!</h1>
+        <h2>Your Spending Insights </h2>
+
+        <!-- Total Expenses Display -->
+        <h3>Total Expenses: <span th:text="${#numbers.formatDecimal(totalAmount, 0, 2)}">0.00</span></h3>
+
+        <!-- Food Expenses -->
+        <h3 onclick="toggleExpenses('food')" style="cursor:pointer;">Food Expenses (Total: <span th:text="${foodTotal}">0.00</span>)</h3>
+        <div id="food-expenses" class="category-container" style="display:none;">
+            <div th:each="expense : ${expenses}" th:if="${expense.category == 'Food'}">
+                <p th:text="'Description: ' + ${expense.description}"></p>
+                <p th:text="'Amount: ' + ${expense.amount}"></p>
+            </div>
+        </div>
+
+        <!-- Travel Expenses -->
+        <h3 onclick="toggleExpenses('travel')" style="cursor:pointer;">Travel Expenses (Total: <span th:text="${travelTotal}">0.00</span>)</h3>
+        <div id="travel-expenses" class="category-container" style="display:none;">
+            <div th:each="expense : ${expenses}" th:if="${expense.category == 'Travel'}">
+                <p th:text="'Description: ' + ${expense.description}"></p>
+                <p th:text="'Amount: ' + ${expense.amount}"></p>
+            </div>
+        </div>
+
+        <!-- Entertainment Expenses -->
+        <h3 onclick="toggleExpenses('entertainment')" style="cursor:pointer;">Entertainment Expenses (Total: <span th:text="${entertainmentTotal}">0.00</span>)</h3>
+        <div id="entertainment-expenses" class="category-container" style="display:none;">
+            <div th:each="expense : ${expenses}" th:if="${expense.category == 'Entertainment'}">
+                <p th:text="'Description: ' + ${expense.description}"></p>
+                <p th:text="'Amount: ' + ${expense.amount}"></p>
+            </div>
+        </div>
+
+        <!-- Other Expenses -->
+        <h3 onclick="toggleExpenses('others')" style="cursor:pointer;">Other Expenses (Total: <span th:text="${othersTotal}">0.00</span>)</h3>
+        <div id="others-expenses" class="category-container" style="display:none;">
+            <div th:each="expense : ${expenses}" th:if="${expense.category == 'Others'}">
+                <p th:text="'Description: ' + ${expense.description}"></p>
+                <p th:text="'Amount: ' + ${expense.amount}"></p>
+            </div>
+        </div>
+
+        <!-- Link to Add Expense Form -->
+        <div id="add-expense">
+            <a href="/addExpense" class="add-expense-button">Add Expense</a>
+        </div>
+
+       <a href="/logout" class="logout-link">Logout</a>
+
+    </div>
+</body>
+</html>

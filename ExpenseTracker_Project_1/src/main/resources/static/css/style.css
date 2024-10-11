@@ -1,0 +1,43 @@
+.top {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    width: 80%;
+    margin: 10% auto;
+    height: 200px;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    color: #C21E56; 
+    font-size: 2.5rem;
+    border-radius: 15px;
+}
+
+body {
+    text-align: center;
+    background-image: url("../images/bgid.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: fantasy;
+    font-size: medium;
+}
+
+p {
+    font-size: 2rem; 
+    text-align: center;
+    color: #000000; 
+}
+
+p a {
+    font-size: 2rem; 
+    text-decoration: none; 
+    color: #000000; 
+    padding: 5px;
+}
+
+p a:hover {
+    background-color: teal;
+	color:navy;
+    padding: 5px;
+    border-radius: 5px;
+}
